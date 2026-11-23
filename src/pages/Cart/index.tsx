@@ -3,7 +3,7 @@ import type { Child } from "jsx-lite-renderer";
 import { Icon } from "@/components/Icon";
 import { Layout } from "@/components/Layout";
 import { getProducts, type Product } from "@/utils/api";
-import { thumb, vnd } from "@/utils/format";
+import { wikimediaThumbnail, formatVnd } from "@/utils/format";
 import { refresh } from "@/utils/router";
 import { getCart, MAX_QTY, setQty } from "@/utils/store";
 
@@ -25,7 +25,7 @@ export const OrderSummary = ({ items, totalVnd, children }: { items: CartItem[];
     <h2>Tóm tắt đơn hàng</h2>
     <div className={css.row}>
       <span className="muted">Tạm tính ({items.reduce((n, i) => n + i.qty, 0)} sản phẩm)</span>
-      <span>{vnd(totalVnd)}</span>
+      <span>{formatVnd(totalVnd)}</span>
     </div>
     <div className={css.row}>
       <span className="muted">Phí giao hàng</span>
@@ -33,7 +33,7 @@ export const OrderSummary = ({ items, totalVnd, children }: { items: CartItem[];
     </div>
     <div className={`${css.row} ${css.total}`}>
       <span>Tổng cộng</span>
-      <span className="price">{vnd(totalVnd)}</span>
+      <span className="price">{formatVnd(totalVnd)}</span>
     </div>
     {children}
   </aside>
@@ -72,12 +72,12 @@ export const Cart = async () => {
           <section className={`card ${css.list}`} aria-label="Sản phẩm trong giỏ">
             {items.map(({ product, qty }) => (
               <article className={css.line}>
-                <img src={thumb(product.imageUrl, 160)} alt="" width="80" height="80" />
+                <img src={wikimediaThumbnail(product.imageUrl, 160)} alt="" width="80" height="80" />
                 <div>
                   <h3>
                     <a href={`/products/${product.id}`}>{product.name}</a>
                   </h3>
-                  <span className="price">{vnd(product.priceVnd)}</span>
+                  <span className="price">{formatVnd(product.priceVnd)}</span>
                 </div>
                 <div className={css.controls}>
                   <div className={css.stepper} role="group" aria-label={`Số lượng ${product.name}`}>

@@ -1,18 +1,27 @@
 import type { z } from "zod";
 
-export const readForm = <S extends z.ZodType>(form: HTMLFormElement, schema: S): z.output<S> | null => {
-  form.querySelectorAll("[data-error-for]").forEach((el) => (el.textContent = ""));
-  form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+const clearErrors = (form: HTMLFormElement) => {
+  form.querySelectorAll("[data-error-for]").forEach((slot) => (slot.textContent = ""));
+  form.querySelectorAll("[aria-invalid]").forEach((field) => field.removeAttribute("aria-invalid"));
+};
 
-  const result = schema.safeParse(Object.fromEntries(new FormData(form)));
-  if (result.success) return result.data;
-
-  for (const issue of result.error.issues) {
-    const name = String(issue.path[0]);
-    const slot = form.querySelector(`[data-error-for="${name}"]`);
-    if (slot && !slot.textContent) slot.textContent = issue.message;
-    form.querySelector(`[name="${name}"]`)?.setAttribute("aria-invalid", "true");
+const showErrors = (form: HTMLFormElement, issues: z.core.$ZodIssue[]) => {
+  for (const issue of issues) {
+    const fieldName = String(issue.path[0]);
+    const errorSlot = form.querySelector(`[data-error-for="${fieldName}"]`);
+    const isFirstErrorForField = errorSlot && !errorSlot.textContent;
+    if (isFirstErrorForField) errorSlot.textContent = issue.message;
+    form.querySelector(`[name="${fieldName}"]`)?.setAttribute("aria-invalid", "true");
   }
   form.querySelector<HTMLElement>("[aria-invalid=true]")?.focus();
+};
+
+export const validateForm = <S extends z.ZodType>(form: HTMLFormElement, schema: S): z.output<S> | null => {
+  clearErrors(form);
+  const values = Object.fromEntries(new FormData(form));
+  const result = schema.safeParse(values);
+  if (result.success) return result.data;
+
+  showErrors(form, result.error.issues);
   return null;
 };

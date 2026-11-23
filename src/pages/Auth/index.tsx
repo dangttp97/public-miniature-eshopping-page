@@ -1,7 +1,7 @@
 import { Field } from "@/components/Field";
 import { Layout } from "@/components/Layout";
 import { checkEmail, login, register, type Session } from "@/utils/api";
-import { readForm } from "@/utils/form";
+import { validateForm } from "@/utils/form";
 import { back } from "@/utils/router";
 import { emailSchema, loginSchema, registerSchema } from "@/utils/schemas";
 import { setSession } from "@/utils/store";
@@ -64,7 +64,7 @@ const onSubmit = (e: SubmitEvent) => {
   const step = form.dataset.step as Step;
 
   if (step === "email") {
-    const data = readForm(form, emailSchema);
+    const data = validateForm(form, emailSchema);
     if (data) run(form, async () => setStep(form, (await checkEmail(data.email)) ? "login" : "register"));
     return;
   }
@@ -75,10 +75,10 @@ const onSubmit = (e: SubmitEvent) => {
     });
 
   if (step === "login") {
-    const data = readForm(form, loginSchema);
+    const data = validateForm(form, loginSchema);
     if (data) signIn(login(data.email, data.password));
   } else {
-    const data = readForm(form, registerSchema);
+    const data = validateForm(form, registerSchema);
     if (data) signIn(register(data.name, data.email, data.password));
   }
 };

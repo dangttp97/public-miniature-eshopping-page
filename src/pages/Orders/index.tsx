@@ -1,7 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { getMyOrders } from "@/utils/api";
-import { vnd } from "@/utils/format";
-import { orderDate, PAYMENT_LABEL, STATUS_LABEL, withLines } from "@/utils/orders";
+import { formatVnd } from "@/utils/format";
+import { formatOrderDate, PAYMENT_LABEL, STATUS_LABEL, withProductNames } from "@/utils/orders";
 import { navigate } from "@/utils/router";
 import { getUser } from "@/utils/store";
 
@@ -20,7 +20,7 @@ export const Orders = async () => {
     throw e;
   });
   if (!found) return toLogin();
-  const orders = await Promise.all(found.map(withLines));
+  const orders = await Promise.all(found.map(withProductNames));
 
   return (
     <Layout>
@@ -32,10 +32,10 @@ export const Orders = async () => {
             {orders.map((o) => (
               <a href={`/orders/${o.id}`} className={`card ${css.order}`}>
                 <span className={css.code}>{o.id}</span>
-                <span className="price">{vnd(o.totalVnd)}</span>
+                <span className="price">{formatVnd(o.totalVnd)}</span>
                 <div className={css.meta}>
                   <span className="badge badge-deal">{STATUS_LABEL[o.status] ?? o.status}</span>
-                  <span>{orderDate(o.createdAt)}</span>
+                  <span>{formatOrderDate(o.createdAt)}</span>
                   <span>{PAYMENT_LABEL[o.paymentMethod]}</span>
                 </div>
                 <span className={css.items}>{o.lines.map((l) => `${l.name} × ${l.qty}`).join(", ")}</span>
