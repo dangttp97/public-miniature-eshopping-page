@@ -1,15 +1,18 @@
-const vndFormat = new Intl.NumberFormat("vi-VN", {
-  style: "currency",
-  currency: "VND",
-});
-export const vnd = (amount: number) => vndFormat.format(amount);
+const vndFormatter = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" });
 
-export const discountPercent = (price: number, original: number) =>
-  original > price ? Math.round((1 - price / original) * 100) : 0;
+export const formatVnd = (amount: number) => vndFormatter.format(amount);
 
-export const thumb = (url: string, width: number) => {
-  const m = url.match(
-    /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/(\w\/\w\w)\/([^/]+)$/,
-  );
-  return m ? `${m[1]}/thumb/${m[2]}/${m[3]}/${width}px-${m[3]}` : url;
+export const discountPercent = (price: number, originalPrice: number) => {
+  if (originalPrice <= price) return 0;
+  return Math.round((1 - price / originalPrice) * 100);
+};
+
+const WIKIMEDIA_FILE = /^(?<base>https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/(?<hashDir>\w\/\w\w)\/(?<fileName>[^/]+)$/;
+
+export const wikimediaThumbnail = (imageUrl: string, width: number) => {
+  const match = imageUrl.match(WIKIMEDIA_FILE);
+  if (!match?.groups) return imageUrl;
+
+  const { base, hashDir, fileName } = match.groups;
+  return `${base}/thumb/${hashDir}/${fileName}/${width}px-${fileName}`;
 };

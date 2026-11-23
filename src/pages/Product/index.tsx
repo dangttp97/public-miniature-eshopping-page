@@ -2,7 +2,7 @@ import { Icon } from "@/components/Icon";
 import { Layout } from "@/components/Layout";
 import { Availability, Prices } from "@/components/ProductCard";
 import { getProduct } from "@/utils/api";
-import { thumb } from "@/utils/format";
+import { wikimediaThumbnail } from "@/utils/format";
 import { back, navigate } from "@/utils/router";
 import { addToCart, MAX_QTY } from "@/utils/store";
 
@@ -75,7 +75,7 @@ export const ProductPage = async ({ params }: { params: Record<string, string> }
 
         <div className={css.layout}>
           <figure className={`card ${css.media}`}>
-            <img src={thumb(product.imageUrl, 960)} alt={`Ảnh minh hoạ ${product.category}`} width="960" height="720" />
+            <img src={wikimediaThumbnail(product.imageUrl, 960)} alt={`Ảnh minh hoạ ${product.category}`} width="960" height="720" />
             <figcaption className={css.credit}>
               Ảnh minh hoạ, không phải ảnh đúng model ·{" "}
               <a href={product.imageAttribution.sourceUrl} target="_blank" rel="noopener">

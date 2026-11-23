@@ -1,5 +1,5 @@
 import type { Product } from "@/utils/api";
-import { discountPercent, thumb, vnd } from "@/utils/format";
+import { discountPercent, wikimediaThumbnail, formatVnd } from "@/utils/format";
 
 import css from "./ProductCard.module.css";
 
@@ -14,12 +14,12 @@ export const Prices = ({ product }: { product: Product }) => {
   const off = discountPercent(product.priceVnd, product.originalPriceVnd);
   return (
     <div className={css.prices}>
-      <span className="price">{vnd(product.priceVnd)}</span>
+      <span className="price">{formatVnd(product.priceVnd)}</span>
       {off > 0 && (
         <>
           <s className={css.was}>
             <span className="visually-hidden">Giá gốc </span>
-            {vnd(product.originalPriceVnd)}
+            {formatVnd(product.originalPriceVnd)}
           </s>
           <span className="badge badge-deal">-{off}%</span>
         </>
@@ -31,7 +31,7 @@ export const Prices = ({ product }: { product: Product }) => {
 export const ProductCard = ({ product }: { product: Product }) => (
   <article className={`card ${css.card}`}>
     <div className={css.media}>
-      <img src={thumb(product.imageUrl, 480)} alt="" loading="lazy" width="480" height="360" />
+      <img src={wikimediaThumbnail(product.imageUrl, 480)} alt="" loading="lazy" width="480" height="360" />
     </div>
     <div className={css.body}>
       <div className={css.meta}>

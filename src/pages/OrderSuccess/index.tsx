@@ -1,8 +1,8 @@
 import { Icon } from "@/components/Icon";
 import { Layout } from "@/components/Layout";
 import { getOrder } from "@/utils/api";
-import { vnd } from "@/utils/format";
-import { PAYMENT_LABEL, withLines } from "@/utils/orders";
+import { formatVnd } from "@/utils/format";
+import { PAYMENT_LABEL, withProductNames } from "@/utils/orders";
 
 import css from "./OrderSuccess.module.css";
 
@@ -25,7 +25,7 @@ export const OrderSuccess = async ({ params }: { params: Record<string, string> 
     );
   }
 
-  const order = await withLines(found);
+  const order = await withProductNames(found);
 
   return (
     <Layout>
@@ -51,12 +51,12 @@ export const OrderSuccess = async ({ params }: { params: Record<string, string> 
                 <span>
                   {l.name} × {l.qty}
                 </span>
-                <span>{vnd(l.priceVnd * l.qty)}</span>
+                <span>{formatVnd(l.priceVnd * l.qty)}</span>
               </div>
             ))}
             <div className={`${css.row} ${css.total}`}>
               <span>Tổng cộng</span>
-              <span className="price">{vnd(order.totalVnd)}</span>
+              <span className="price">{formatVnd(order.totalVnd)}</span>
             </div>
             <div className={css.row}>
               <span className="muted">Thanh toán</span>

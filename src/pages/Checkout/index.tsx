@@ -2,8 +2,8 @@ import { Field } from "@/components/Field";
 import { Layout } from "@/components/Layout";
 import { Cart, loadCart, OrderSummary } from "@/pages/Cart";
 import { createOrder, type OrderRequest } from "@/utils/api";
-import { readForm } from "@/utils/form";
-import { vnd } from "@/utils/format";
+import { validateForm } from "@/utils/form";
+import { formatVnd } from "@/utils/format";
 import { navigate } from "@/utils/router";
 import { checkoutSchema } from "@/utils/schemas";
 import { clearCart, getUser } from "@/utils/store";
@@ -27,7 +27,7 @@ export const Checkout = async () => {
     const alert = form.querySelector<HTMLElement>("[role=alert]")!;
     alert.textContent = "";
 
-    const data = readForm(form, checkoutSchema);
+    const data = validateForm(form, checkoutSchema);
     if (!data) return;
 
     const request: OrderRequest = {
@@ -55,7 +55,7 @@ export const Checkout = async () => {
     } catch (err) {
       alert.textContent = `Chưa đặt được hàng: ${(err as Error).message}. Vui lòng thử lại.`;
       button.disabled = false;
-      button.textContent = `Đặt hàng · ${vnd(totalVnd)}`;
+      button.textContent = `Đặt hàng · ${formatVnd(totalVnd)}`;
     }
   };
 
@@ -141,13 +141,13 @@ export const Checkout = async () => {
                   <span>
                     {product.name} × {qty}
                   </span>
-                  <span>{vnd(product.priceVnd * qty)}</span>
+                  <span>{formatVnd(product.priceVnd * qty)}</span>
                 </div>
               ))}
             </div>
             <p className="alert" role="alert"></p>
             <button type="submit" className="btn btn-primary btn-block">
-              Đặt hàng · {vnd(totalVnd)}
+              Đặt hàng · {formatVnd(totalVnd)}
             </button>
           </OrderSummary>
         </form>
