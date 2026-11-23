@@ -1,0 +1,11 @@
+{
+  "explorer.sortOrder": "foldersNestsFiles",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "yarn.lock, .yarnrc.yml, tsconfig.json, vite.config.ts, .editorconfig, .gitattributes, .gitignore"
+  },
+  "files.exclude": {
+    "node_modules": true,
+    ".yarn": true
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.items[?(@.productId in ['wd-green-240','crucial-ddr4-8gb','kingston-dt100g3-32gb','sandisk-ultra-flair-128gb','adata-xpg-gammix-s50-2tb','corsair-vengeance-lpx-ddr4-8gb','samsung-bar-fit-32gb','samsung-bar-fit-64gb','transcend-storejet-25m3-1tb','corsair-cv650','deepcool-matrexx-40-3fs'])]"
+          }
+        ]
+      },
+      "response": {
+        "status": 409,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Có sản phẩm trong giỏ đã hết hàng, vui lòng cập nhật giỏ hàng" }
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.items[?(@.productId nin ['wd-green-240','crucial-ddr4-8gb','kingston-dt100g3-32gb','sandisk-ultra-flair-128gb','adata-xpg-gammix-s50-2tb','corsair-vengeance-lpx-ddr4-8gb','samsung-bar-fit-32gb','samsung-bar-fit-64gb','transcend-storejet-25m3-1tb','intel-core-i5-14400-tray','msi-geforce-rtx-5060-ventus-2x-oc','corsair-cv650','deepcool-matrexx-40-3fs'])]"
+          }
+        ]
+      },
+      "response": {
+        "status": 422,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Sản phẩm không tồn tại" }
+      }
+    },
+    {
+      "priority": 2,
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders",
+        "bodyPatterns": [{ "matchesJsonPath": "$[?(@.items.length() == 0)]" }]
+      },
+      "response": {
+        "status": 400,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Giỏ hàng đang trống" }
+      }
+    },
+    {
+      "priority": 3,
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders",
+        "headers": { "Authorization": { "matches": "Bearer [A-Za-z0-9]+" } },
+        "bodyPatterns": [
+          { "matchesJsonPath": "$.items[0].productId" },
+          { "matchesJsonPath": "$.customer.phone" },
+          { "matchesJsonPath": "$.customer.address" }
+        ],
+        "customMatcher": {
+          "name": "state-matcher",
+          "parameters": { "hasContext": "session:{{regexExtract request.headers.Authorization '[A-Za-z0-9]+$'}}" }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": { "Content-Type": "application/json" },
+        "body": "{ \"id\": \"ORD-{{randomValue length=8 type='ALPHANUMERIC' uppercase=true}}\", \"status\": \"pending\", \"createdAt\": \"{{now}}\", \"userId\": \"{{state context=(join 'session:' (regexExtract request.headers.Authorization '[A-Za-z0-9]+$') '') property='userId'}}\", \"items\": {{{toJson (jsonPath request.body '$.items')}}}, \"customer\": {{{toJson (jsonPath request.body '$.customer')}}}, \"note\": {{{toJson (jsonPath request.body '$.note' default='')}}}, \"paymentMethod\": {{{toJson (jsonPath request.body '$.paymentMethod')}}} }"
+      },
+      "serveEventListeners": [
+        {
+          "name": "recordState",
+          "parameters": {
+            "context": "order:{{jsonPath response.body '$.id'}}",
+            "state": { "json": "{{{response.body}}}" }
+          }
+        },
+        {
+          "name": "recordState",
+          "parameters": {
+            "context": "orders:{{jsonPath response.body '$.userId'}}",
+            "list": { "addFirst": { "json": "{{{response.body}}}" } }
+          }
+        }
+      ]
+    },
+    {
+      "priority": 4,
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders",
+        "bodyPatterns": [
+          { "matchesJsonPath": "$.items[0].productId" },
+          { "matchesJsonPath": "$.customer.phone" },
+          { "matchesJsonPath": "$.customer.address" }
+        ]
+      },
+      "response": {
+        "status": 201,
+        "headers": { "Content-Type": "application/json" },
+        "body": "{ \"id\": \"ORD-{{randomValue length=8 type='ALPHANUMERIC' uppercase=true}}\", \"status\": \"pending\", \"createdAt\": \"{{now}}\", \"userId\": null, \"items\": {{{toJson (jsonPath request.body '$.items')}}}, \"customer\": {{{toJson (jsonPath request.body '$.customer')}}}, \"note\": {{{toJson (jsonPath request.body '$.note' default='')}}}, \"paymentMethod\": {{{toJson (jsonPath request.body '$.paymentMethod')}}} }"
+      },
+      "serveEventListeners": [
+        {
+          "name": "recordState",
+          "parameters": {
+            "context": "order:{{jsonPath response.body '$.id'}}",
+            "state": { "json": "{{{response.body}}}" }
+          }
+        }
+      ]
+    },
+
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/orders",
+        "headers": { "Authorization": { "matches": "Bearer [A-Za-z0-9]+" } },
+        "customMatcher": {
+          "name": "state-matcher",
+          "parameters": { "hasContext": "session:{{regexExtract request.headers.Authorization '[A-Za-z0-9]+$'}}" }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "body": "[{{#each (state context=(join 'orders:' (state context=(join 'session:' (regexExtract request.headers.Authorization '[A-Za-z0-9]+$') '') property='userId') '') property='list' default='[]')}}{{{json}}}{{#unless @last}},{{/unless}}{{/each}}]"
+      }
+    },
+    {
+      "priority": 5,
+      "request": { "method": "GET", "urlPath": "/api/orders" },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại" }
+      }
+    },
+
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/orders/[A-Z0-9-]+",
+        "customMatcher": { "name": "state-matcher", "parameters": { "hasContext": "order:{{request.pathSegments.[2]}}" } }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "body": "{{{state context=(join 'order:' request.pathSegments.[2] '') property='json'}}}"
+      }
+    },
+    {
+      "priority": 5,
+      "request": { "method": "GET", "urlPathPattern": "/api/orders/[^/]+" },
+      "response": {
+        "status": 404,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "error": "Không tìm thấy đơn hàng" }
+      }
+    }
+  ]
+}

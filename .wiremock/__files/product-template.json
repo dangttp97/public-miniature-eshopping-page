@@ -1,0 +1,347 @@
+
+{{#assign 'products'}}
+[
+  {
+    "id": "wd-green-240",
+    "name": "SSD Western Digital Green 240GB 2.5-Inch SATA III",
+    "sku": "WDS240G3G0A",
+    "category": "SSD",
+    "priceVnd": 520000,
+    "originalPriceVnd": 630000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "240GB",
+      "formFactor": "2.5 inch",
+      "interface": "SATA III",
+      "readSpeed": "545 MB/s",
+      "writeSpeed": "430 MB/s",
+      "warranty": "36 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/2015_Dysk_SSD_Silicon_Power_60GB_%2802%29.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2015_Dysk_SSD_Silicon_Power_60GB_(02).jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/ssd-western-digital-green-sata-iii-240gb",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "crucial-ddr4-8gb",
+    "name": "RAM Laptop Crucial DDR4 8GB 2400MHz",
+    "sku": "CT8G4SFS824A",
+    "category": "RAM",
+    "priceVnd": 490000,
+    "originalPriceVnd": 990000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "8GB",
+      "memoryType": "DDR4",
+      "speed": "2400MHz",
+      "voltage": "1.2V",
+      "warranty": "36 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "PantheraLeo1359531",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/ram-laptop-crucial-ddr4-8gb-bus-2400-skylake-kabylake",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "kingston-dt100g3-32gb",
+    "name": "USB 3.0 Kingston DataTraveler 100 G3 32GB",
+    "sku": "DT100G3/32GB",
+    "category": "USB",
+    "priceVnd": 100000,
+    "originalPriceVnd": 150000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "32GB",
+      "interface": "USB 3.0 Type-A",
+      "readSpeed": "100 MB/s",
+      "writeSpeed": "10 MB/s",
+      "warranty": "60 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_%281%29.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/usb-3-0-kingston-datatraverler-100-g3-32gb-100mb-s",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "sandisk-ultra-flair-128gb",
+    "name": "USB 3.0 SanDisk Ultra Flair CZ73 128GB",
+    "sku": "SDCZ73-128G-G46",
+    "category": "USB",
+    "priceVnd": 350000,
+    "originalPriceVnd": 460000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "128GB",
+      "interface": "USB 3.0 USB-A",
+      "readSpeed": "150 MB/s",
+      "writeSpeed": "25 MB/s",
+      "warranty": "60 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_%281%29.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/usb-3-0-sandisk-ultra-flair-cz73-128gb",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "adata-xpg-gammix-s50-2tb",
+    "name": "SSD Adata XPG Gammix S50 2TB NVMe",
+    "sku": "AGAMMIXS50-2TT-C",
+    "category": "SSD",
+    "priceVnd": 12900000,
+    "originalPriceVnd": 14500000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "2TB",
+      "formFactor": "M.2 2280",
+      "interface": "PCIe Gen4 x4 NVMe",
+      "readSpeed": "4700 MB/s",
+      "writeSpeed": "4300 MB/s",
+      "warranty": "60 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2017_Dysk_SSD_Plextor_M8Pe%28Y%29_256GB.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_Dysk_SSD_Plextor_M8Pe(Y)_256GB.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/ssd-adata-xpg-gammix-s50-m-2-pcie-gen4-x4-nvme-2tb-agammixs50-2tt-c",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "corsair-vengeance-lpx-ddr4-8gb",
+    "name": "RAM PC Corsair Vengeance LPX 8GB DDR4 2400MHz CL14",
+    "sku": "CMK8GX4M1A2400C14",
+    "category": "RAM",
+    "priceVnd": 2290000,
+    "originalPriceVnd": 2290000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "8GB (1 x 8GB)",
+      "memoryType": "DDR4",
+      "speed": "2400MHz",
+      "latency": "CL14",
+      "voltage": "1.2V",
+      "warranty": "36 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "PantheraLeo1359531",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/ram-pc-corsair-vengeance-lpx-8gb-bus-2400-ddr4-c14-cmk8gx4m1a2400c14",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "samsung-bar-fit-32gb",
+    "name": "USB 3.0 Samsung BAR-FIT 32GB",
+    "sku": "8806086954617",
+    "category": "USB",
+    "priceVnd": 200000,
+    "originalPriceVnd": 300000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "32GB",
+      "interface": "USB 3.0",
+      "readSpeed": "130 MB/s",
+      "material": "Plastic",
+      "warranty": "24 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_%281%29.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/usb-3-0-samsung-bar-fit-32gb",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "samsung-bar-fit-64gb",
+    "name": "USB 3.0 Samsung BAR-FIT 64GB",
+    "sku": "MZ2075",
+    "category": "USB",
+    "priceVnd": 580000,
+    "originalPriceVnd": 580000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "64GB",
+      "interface": "USB 3.0",
+      "readSpeed": "130 MB/s",
+      "material": "Plastic",
+      "warranty": "24 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_%281%29.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/usb-3-0-samsung-bar-fit-64gb",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "transcend-storejet-25m3-1tb",
+    "name": "Ổ cứng di động Transcend StoreJet 25M3 1TB",
+    "sku": "760557829393",
+    "category": "HDD",
+    "priceVnd": 1520000,
+    "originalPriceVnd": 1520000,
+    "availability": "out_of_stock",
+    "specs": {
+      "capacity": "1TB",
+      "model": "StoreJet 25M3",
+      "interface": "USB 3.0 5Gbps",
+      "transferRate": "Up to 90 MB/s",
+      "dimensions": "129.5 x 82.4 x 20.4 mm",
+      "warranty": "24 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/HK_unboxing_Made_in_Taiwan_USB_3.1_Gen_1_Portable_Hard_Drive_Stream_S03_%E5%BB%A3%E7%A9%8E%E9%9B%BB%E9%80%9A_Silicon_Power_Computer_%26_Communications_April_2019_SSG_01.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "PS Ommyerb",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:HK_unboxing_Made_in_Taiwan_USB_3.1_Gen_1_Portable_Hard_Drive_Stream_S03_%E5%BB%A3%E7%A9%8E%E9%9B%BB%E9%80%9A_Silicon_Power_Computer_%26_Communications_April_2019_SSG_01.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/o-cung-di-dong-transcend-storejet-25m3-2-5-1tb",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "intel-core-i5-14400-tray",
+    "name": "CPU Intel Core i5-14400 Tray New 10 nhân 16 luồng",
+    "sku": "i5-14400-TRAY",
+    "category": "CPU",
+    "priceVnd": 4150000,
+    "originalPriceVnd": 4990000,
+    "availability": "in_stock",
+    "salesNote": "MemoryZone ghi chú chỉ bán kèm PC lắp ráp tối thiểu 7 linh kiện.",
+    "specs": {
+      "cores": "10",
+      "threads": "16",
+      "maxClock": "Up to 4.7GHz",
+      "cache": "20MB",
+      "socket": "LGA1700",
+      "integratedGraphics": "Intel UHD 730",
+      "coolerIncluded": "No",
+      "warranty": "36 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Unterseite_des_AMD_Ryzen_Threadripper_7970X_20240407_074.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "PantheraLeo1359531",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Unterseite_des_AMD_Ryzen_Threadripper_7970X_20240407_074.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/cpu-intel-core-i5-14400-up-to-4-7ghz-10-cores-16-threads-20mb-tray-new",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "msi-geforce-rtx-5060-ventus-2x-oc",
+    "name": "VGA MSI GeForce RTX 5060 VENTUS 2X OC V1 8GB GDDR7",
+    "sku": "G5060-8V2CV1",
+    "category": "VGA",
+    "priceVnd": 13500000,
+    "originalPriceVnd": 14500000,
+    "availability": "in_stock",
+    "salesNote": "MemoryZone ghi chú chỉ bán kèm PC lắp ráp tối thiểu 7 linh kiện.",
+    "specs": {
+      "chipset": "NVIDIA GeForce RTX 5060",
+      "cudaCores": "3840",
+      "memory": "8GB GDDR7",
+      "recommendedPsu": "550W",
+      "warranty": "36 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/BFG_NVIDIA_GeForce_9500_GT.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Thomas Galvin",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:BFG_NVIDIA_GeForce_9500_GT.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/vga-msi-geforce-rtx-5060-ventus-2x-oc-v1-8gb-gddr7",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "corsair-cv650",
+    "name": "Nguồn Corsair CV650 650W 80 Plus Bronze",
+    "sku": "CP-9020236-NA",
+    "category": "PSU",
+    "priceVnd": 1290000,
+    "originalPriceVnd": 1390000,
+    "availability": "out_of_stock",
+    "specs": {
+      "wattage": "650W",
+      "efficiency": "80 Plus Bronze",
+      "fanSize": "120mm",
+      "inputVoltage": "100-240V",
+      "warranty": "3 years"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/ATX_Computer_power_supply_unit.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "Dmitry Makeev",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/nguon-may-tinh-corsair-cv650-650w-80-plus-bronze-cp-9020236-na",
+    "priceCheckedAt": "2026-11-21"
+  },
+  {
+    "id": "deepcool-matrexx-40-3fs",
+    "name": "Case Deepcool MATREXX 40 3FS Mini Tower",
+    "sku": "DP-MATX-MATREXX40-3FS",
+    "category": "Case",
+    "priceVnd": 890000,
+    "originalPriceVnd": 990000,
+    "availability": "out_of_stock",
+    "specs": {
+      "formFactor": "Mini Tower",
+      "motherboardSupport": "M-ATX, Mini-ITX",
+      "includedFans": "3 x 120mm RGB",
+      "warranty": "12 months"
+    },
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/PC-Geh%C3%A4use_Kolink_Observatory_RGB_Midi-Tower_20201120_DSC6134.jpg",
+    "imageIsIllustrative": true,
+    "imageAttribution": {
+      "creator": "PantheraLeo1359531",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:PC-Geh%C3%A4use_Kolink_Observatory_RGB_Midi-Tower_20201120_DSC6134.jpg"
+    },
+    "sourceUrl": "https://memoryzone.com.vn/case-may-tinh-deepcool-matrexx-40-3fs-dp-matx-matrexx40-3fs",
+    "priceCheckedAt": "2026-11-21"
+  }
+]
+{{/assign}}
+{{#if request.pathSegments.[2]}}
+{{#assign 'filter'}}$[?(@.id == '{{request.pathSegments.[2]}}')]{{/assign}}
+{{{toJson (jsonPath (toJson (jsonPath products filter)) '$[0]')}}}
+{{else if request.query.keyword}}
+{{#assign 'filter'}}$[?(@.name =~ /.*{{{request.query.keyword}}}.*/i)]{{/assign}}
+{{{toJson (jsonPath products filter)}}}
+{{else}}
+{{{products}}}
+{{/if}}

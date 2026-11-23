@@ -1,0 +1,21 @@
+{
+  "name": "public-miniature-eshopping-page",
+  "packageManager": "yarn@4.18.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "mock": "sh scripts/init-wiremock.sh"
+  },
+  "dependencies": {
+    "@watari/core": "github:dangttp97/watari#workspace=@watari/core",
+    "jsx-lite-renderer": "github:dangttp97/jsx-lite-renderer",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}

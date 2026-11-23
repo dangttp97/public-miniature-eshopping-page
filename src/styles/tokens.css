@@ -1,0 +1,94 @@
+:root {
+  --color-primary: #047857;
+  --color-primary-hover: #065f46;
+  --color-on-primary: #ffffff;
+  --color-primary-soft: #d1fae5;
+  --color-on-primary-soft: #065f46;
+
+  --color-accent: #c2410c;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: #ffedd5;
+  --color-on-accent-soft: #9a3412;
+
+  --color-bg: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #eaf0ed;
+  --color-text: #10241d;
+  --color-text-muted: #4b5b55;
+  --color-border: #d5e2dc;
+  --color-border-strong: #a9bfb5;
+
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fee2e2;
+  --color-warning-soft: #fef3c7;
+  --color-on-warning-soft: #92400e;
+  --color-focus: #2563eb;
+
+  --font-heading: "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+  --shadow-sm: 0 1px 2px rgb(16 36 29 / 0.06), 0 1px 3px rgb(16 36 29 / 0.08);
+  --shadow-md: 0 4px 12px rgb(16 36 29 / 0.1);
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --container: 1200px;
+  --header-height: 64px;
+  --tap-min: 44px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #34d399;
+    --color-primary-hover: #6ee7b7;
+    --color-on-primary: #052e22;
+    --color-primary-soft: #0f3a2d;
+    --color-on-primary-soft: #a7f3d0;
+
+    --color-accent: #fb923c;
+    --color-on-accent: #1c0d02;
+    --color-accent-soft: #3b2210;
+    --color-on-accent-soft: #fdba74;
+
+    --color-bg: #0b1512;
+    --color-surface: #13201b;
+    --color-surface-sunken: #0f1a16;
+    --color-text: #e6f2ec;
+    --color-text-muted: #9db3aa;
+    --color-border: #24372f;
+    --color-border-strong: #3a5248;
+
+    --color-danger: #f87171;
+    --color-danger-soft: #3a1414;
+    --color-warning-soft: #3a2a0c;
+    --color-on-warning-soft: #fcd34d;
+    --color-focus: #60a5fa;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 12px rgb(0 0 0 / 0.5);
+  }
+}
