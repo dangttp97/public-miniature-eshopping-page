@@ -1,7 +1,7 @@
 import type { CartSummary } from "@/entities/CartItem";
 import { cx } from "@/lib/cx";
 import { formatVnd } from "@/lib/format";
-import type { Child } from "@koniwa/core";
+import type { PropsWithChildren } from "@koniwa/core";
 
 import css from "./OrderSummary.module.css";
 
@@ -9,7 +9,7 @@ export const OrderSummary = ({
   items,
   totalVnd,
   children,
-}: CartSummary & { children?: Child }) => (
+}: PropsWithChildren<CartSummary>) => (
   <aside className={cx("card", css.summary)} aria-label="Tóm tắt đơn hàng">
     <h2>Tóm tắt đơn hàng</h2>
     <div className={css.row}>

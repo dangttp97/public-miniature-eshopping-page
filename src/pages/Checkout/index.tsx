@@ -13,7 +13,7 @@ import { cx } from "@/lib/cx";
 import { validateForm } from "@/lib/form";
 import { formatVnd } from "@/lib/format";
 import { Redirect } from "@/lib/navigation";
-import { useState } from "@koniwa/core";
+import { type FormEventHandler, useState } from "@koniwa/core";
 import { Link, useLocation, useNavigate } from "@koniwa/router";
 
 import css from "./Checkout.module.css";
@@ -30,7 +30,6 @@ export const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cod");
   const [isSubmitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const inputValue = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 
   if (cart.status !== "done") return <PageStatus state={cart} />;
   const { items, totalVnd } = cart.data;
@@ -38,13 +37,10 @@ export const Checkout = () => {
   if (!user && !isGuest)
     return <CheckoutAccountSelection items={items} totalVnd={totalVnd} />;
 
-  const handleSubmit = async (e: SubmitEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setError("");
-    const data = validateForm(
-      e.currentTarget as HTMLFormElement,
-      checkoutSchema,
-    );
+    const data = validateForm(e.currentTarget, checkoutSchema);
     if (!data) return;
 
     const request: OrderRequest = {
@@ -86,7 +82,7 @@ export const Checkout = () => {
           Bạn đang mua không cần tài khoản. <Link to="/login">Đăng nhập</Link>
         </p>
       )}
-      <form className="split" onSubmit={handleSubmit} novalidate>
+      <form className="split" onSubmit={handleSubmit} noValidate>
         <div className={css.form}>
           <fieldset className={cx("card", css.section)}>
             <legend>Thông tin nhận hàng</legend>
@@ -97,13 +93,13 @@ export const Checkout = () => {
                 autocomplete="name"
                 required
                 value={name}
-                onInput={(e: Event) => setName(inputValue(e))}
+                onInput={(e) => setName(e.currentTarget.value)}
               />
               <Field
                 label="Số điện thoại"
                 name="phone"
                 type="tel"
-                inputmode="numeric"
+                inputMode="numeric"
                 autocomplete="tel"
                 required
                 placeholder="Ví dụ: 0912345678"
@@ -115,7 +111,7 @@ export const Checkout = () => {
               type="email"
               autocomplete="email"
               value={email}
-              onInput={(e: Event) => setEmail(inputValue(e))}
+              onInput={(e) => setEmail(e.currentTarget.value)}
             />
             <Field
               label="Địa chỉ giao hàng"
@@ -136,6 +132,7 @@ export const Checkout = () => {
             <legend>Phương thức thanh toán</legend>
             {PAYMENT_OPTIONS.map((option) => (
               <Radio
+                key={option.value}
                 name="paymentMethod"
                 value={option.value}
                 label={option.label}

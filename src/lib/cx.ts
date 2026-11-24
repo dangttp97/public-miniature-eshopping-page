@@ -1,3 +1,3 @@
-type ClassValue = string | false | null | undefined;
+type ClassValue = string | number | false | null | undefined;
 
 export const cx = (...classes: ClassValue[]) => classes.filter(Boolean).join(" ");

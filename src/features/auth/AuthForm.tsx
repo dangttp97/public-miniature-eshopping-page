@@ -1,6 +1,6 @@
 import { Button } from "@/components/Button/Button";
 import { cx } from "@/lib/cx";
-import type { Child } from "@koniwa/core";
+import type { FormEventHandler, ReactNode } from "@koniwa/core";
 
 import css from "./AuthForm.module.css";
 
@@ -10,9 +10,9 @@ type AuthFormProps = {
   submitLabel: string;
   isBusy: boolean;
   error: string;
-  onSubmit: (e: SubmitEvent) => void;
-  footer: Child;
-  children?: Child;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  footer: ReactNode;
+  children?: ReactNode;
 };
 
 export const AuthForm = ({
@@ -31,7 +31,7 @@ export const AuthForm = ({
       <p className="muted">{lead}</p>
     </div>
 
-    <form className={css.form} onSubmit={onSubmit} novalidate>
+    <form className={css.form} onSubmit={onSubmit} noValidate>
       {children}
       <p className="alert" role="alert">
         {error}

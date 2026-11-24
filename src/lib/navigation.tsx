@@ -1,4 +1,4 @@
-import { type Child, useEffect } from "@koniwa/core";
+import { type ComponentProps, useEffect } from "@koniwa/core";
 import { useNavigate } from "@koniwa/router";
 
 const isLandingEntry = () => history.state?.landing === true;
@@ -26,7 +26,7 @@ export const useBack = () => {
 const isModifiedClick = (event: MouseEvent) =>
   event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey;
 
-export const ReplaceLink = ({ to, children, ...attributes }: { to: string; children?: Child; [attribute: string]: unknown }) => {
+export const ReplaceLink = ({ to, children, ...attributes }: ComponentProps<"a"> & { to: string }) => {
   const replace = useReplace();
   const handleClick = (event: MouseEvent) => {
     if (isModifiedClick(event)) return;

@@ -42,19 +42,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koniwa/core@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@koniwa/core@npm:0.3.0"
-  checksum: 10c0/3793d8592e4988e84908a0ebe04901a72e8f731efe19d0f83792e292836cff429c612be89600fcbd7f23b165e476f07918d48056f7008896b039cdba8377ddb2
+"@koniwa/core@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@koniwa/core@npm:0.4.0"
+  checksum: 10c0/7c1e8a87964d4f38d9c84fe5b6b17a36235ca5d4b8c6d3688b1ace3cb1d7daac77568e4f9db4718d9c9a41cf98e9302058339fc97eb220a63b144c873910b01f
   languageName: node
   linkType: hard
 
-"@koniwa/router@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@koniwa/router@npm:0.1.0"
+"@koniwa/router@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@koniwa/router@npm:0.1.1"
   peerDependencies:
-    "@koniwa/core": ^0.3.0
-  checksum: 10c0/557ed5b4f477a207b6ce85e14353e6e28b9e13083ff5d03d8f93b4bd85221c1426547f7fc69166cba0fba0fc43745d8c742677fe6039a4578d450914e7310800
+    "@koniwa/core": ^0.3.0 || ^0.4.0
+  checksum: 10c0/c8ae4144e35651a88741bfa4120e5b4c3a22fd0286021b326a7e2ac9c89d8a0df95cc2768535867ffa68683971785bc9052271f2cd3311de07f8449e1a555fac
   languageName: node
   linkType: hard
 
@@ -657,8 +657,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "public-miniature-eshopping-page@workspace:."
   dependencies:
-    "@koniwa/core": "npm:^0.3.0"
-    "@koniwa/router": "npm:^0.1.0"
+    "@koniwa/core": "npm:^0.4.0"
+    "@koniwa/router": "npm:^0.1.1"
     "@types/node": "npm:^26.6.6"
     "@watari/core": "github:dangttp97/watari#workspace=@watari/core"
     typescript: "npm:^7.0.2"

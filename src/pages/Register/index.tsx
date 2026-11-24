@@ -4,7 +4,7 @@ import { Field } from "@/components/Field/Field";
 import { AuthForm } from "@/features/auth/AuthForm";
 import { validateForm } from "@/lib/form";
 import { ReplaceLink, useBack } from "@/lib/navigation";
-import { useState } from "@koniwa/core";
+import { type FormEventHandler, useState } from "@koniwa/core";
 
 import { registerSchema } from "./registerSchema";
 
@@ -13,10 +13,10 @@ export const Register = () => {
   const [isBusy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: SubmitEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setError("");
-    const data = validateForm(e.currentTarget as HTMLFormElement, registerSchema);
+    const data = validateForm(e.currentTarget, registerSchema);
     if (!data) return;
 
     setBusy(true);

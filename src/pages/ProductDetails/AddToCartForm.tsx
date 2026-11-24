@@ -3,6 +3,7 @@ import { Field } from "@/components/Field/Field";
 import { Icon } from "@/components/Icon/Icon";
 import type { Product } from "@/entities/Product";
 import { addToCart, MAX_QTY } from "@/features/cart/cartStore";
+import type { FormEventHandler } from "@koniwa/core";
 import { useNavigate } from "@koniwa/router";
 
 import css from "./ProductDetails.module.css";
@@ -11,10 +12,10 @@ export const AddToCartForm = ({ product }: { product: Product }) => {
   const navigate = useNavigate();
   const isInStock = product.availability === "in_stock";
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const qty = Number(
-      new FormData(e.currentTarget as HTMLFormElement).get("qty"),
+      new FormData(e.currentTarget).get("qty"),
     );
     addToCart(product.id, qty);
     navigate("/cart");

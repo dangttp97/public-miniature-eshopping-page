@@ -4,12 +4,12 @@ import { Icon } from "@/components/Icon/Icon";
 import { signOut, useUser } from "@/features/auth/user";
 import { useCart } from "@/features/cart/cartStore";
 import { cx } from "@/lib/cx";
-import type { Child } from "@koniwa/core";
+import type { FormEventHandler, PropsWithChildren } from "@koniwa/core";
 import { Link, useLocation, useNavigate } from "@koniwa/router";
 
 import css from "./Layout.module.css";
 
-export const Layout = ({ children }: { children?: Child }) => {
+export const Layout = ({ children }: PropsWithChildren) => {
   const user = useUser();
   const cart = useCart();
   const navigate = useNavigate();
@@ -17,11 +17,9 @@ export const Layout = ({ children }: { children?: Child }) => {
     new URLSearchParams(useLocation().search).get("keyword") ?? "";
   const count = cart.reduce((total, line) => total + line.qty, 0);
 
-  const handleSearch = (e: SubmitEvent) => {
+  const handleSearch: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const typed = String(
-      new FormData(e.currentTarget as HTMLFormElement).get("keyword") ?? "",
-    ).trim();
+    const typed = String(new FormData(e.currentTarget).get("keyword") ?? "").trim();
     navigate(typed ? `/?keyword=${encodeURIComponent(typed)}` : "/");
   };
 

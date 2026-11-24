@@ -1,16 +1,14 @@
 import { hintClass } from "@/components/Field/Field";
 import { cx } from "@/lib/cx";
+import type { ComponentPropsWithoutRef } from "@koniwa/core";
 
 import css from "./Radio.module.css";
 
-type RadioProps = {
+type RadioProps = ComponentPropsWithoutRef<"input"> & {
   label: string;
   hint?: string;
   name: string;
   value: string;
-  checked?: boolean;
-  className?: string;
-  [attribute: string]: unknown;
 };
 
 export const Radio = ({

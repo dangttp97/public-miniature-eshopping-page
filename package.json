@@ -9,8 +9,8 @@
     "mock": "sh scripts/init-wiremock.sh"
   },
   "dependencies": {
-    "@koniwa/core": "^0.3.0",
-    "@koniwa/router": "^0.1.0",
+    "@koniwa/core": "^0.4.0",
+    "@koniwa/router": "^0.1.1",
     "@watari/core": "github:dangttp97/watari#workspace=@watari/core",
     "zod": "^4.6.7"
   },

@@ -1,18 +1,16 @@
 import { cx } from "@/lib/cx";
+import type { ComponentPropsWithoutRef } from "@koniwa/core";
 
 import css from "./Field.module.css";
 
 export const inputClass = css.input;
 export const hintClass = css.hint;
 
-type FieldProps = {
-  required?: boolean;
+type FieldProps = ComponentPropsWithoutRef<"input"> & {
   label: string;
   name: string;
   hint?: string;
   multiline?: boolean;
-  className?: string;
-  [attribute: string]: unknown;
 };
 
 export const Field = ({
@@ -26,7 +24,7 @@ export const Field = ({
 }: FieldProps) => {
   const hintId = `${name}-hint`;
   const errorId = `${name}-error`;
-  const control = {
+  const control: Record<string, unknown> = {
     ...attributes,
     id: name,
     name,

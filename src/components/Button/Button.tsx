@@ -1,5 +1,5 @@
 import { cx } from "@/lib/cx";
-import type { Child } from "@koniwa/core";
+import type { ComponentProps } from "@koniwa/core";
 
 import css from "./Button.module.css";
 
@@ -11,14 +11,9 @@ export type ButtonStyle = {
   iconOnly?: boolean;
 };
 
-type ButtonProps = ButtonStyle & {
-  type?: "button" | "submit" | "reset";
-  className?: string;
-  children?: Child;
-  [attribute: string]: unknown;
-};
+type ButtonProps = ComponentProps<"button"> & ButtonStyle;
 
-export const buttonClass = ({ variant = "primary", block = false, iconOnly = false }: ButtonStyle = {}, className?: string) =>
+export const buttonClass = ({ variant = "primary", block = false, iconOnly = false }: ButtonStyle = {}, className?: string | number) =>
   cx(css.button, css[variant], block && css.block, iconOnly && css.iconOnly, className);
 
 export const Button = ({ variant, block, iconOnly, className, children, ...attributes }: ButtonProps) => (
