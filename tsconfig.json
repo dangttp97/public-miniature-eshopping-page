@@ -7,7 +7,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client", "node"],
     "jsx": "react-jsx",
-    "jsxImportSource": "jsx-lite-renderer",
+    "jsxImportSource": "@koniwa/core",
     "paths": { "@/*": ["./src/*"] },
     "strict": true,
     "noEmit": true,

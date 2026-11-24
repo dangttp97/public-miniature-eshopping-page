@@ -14,9 +14,9 @@
 .line img {
   width: 80px;
   height: 80px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: var(--radius-md);
-  background: var(--color-surface-sunken);
+  background: var(--color-product-photo);
 }
 .line h3 {
   font-size: var(--text-md);
@@ -54,23 +54,6 @@
   text-align: center;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-}
-
-.summary {
-  display: grid;
-  gap: var(--space-3);
-  padding: var(--space-5);
-}
-.row {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.total {
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-border);
-  font-weight: 700;
-  font-size: var(--text-lg);
 }
 
 .empty {

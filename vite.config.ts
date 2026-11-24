@@ -8,7 +8,7 @@ export default defineConfig({
     conditions: ["source", ...defaultClientConditions],
   },
   oxc: {
-    jsx: { runtime: "automatic", importSource: "jsx-lite-renderer" },
+    jsx: { runtime: "automatic", importSource: "@koniwa/core" },
   },
   server: {
     proxy: { "/api": "http://localhost:8080" },

@@ -1,0 +1,28 @@
+.section {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+.choices {
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 600px) {
+  .choices {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.or {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--color-border);
+}
