@@ -5,8 +5,8 @@
 Dự án mẫu cho trang bán hàng điện tử và linh kiện máy tính. WireMock cung cấp
 dữ liệu sản phẩm giả lập để phục vụ việc phát triển và thử nghiệm giao diện.
 Danh mục hiện có 13 sản phẩm thuộc các nhóm SSD, RAM, USB, ổ cứng di động,
-CPU, VGA, nguồn và case; tất cả sản phẩm có URL ảnh minh họa từ Wikimedia
-Commons. Ảnh không đại diện chính xác cho model đang liệt kê.
+CPU, VGA, nguồn và case; ảnh sản phẩm lấy từ trang MemoryZone tương ứng và
+lưu trong `public/images/`.
 
 ## Công nghệ sử dụng
 
@@ -69,27 +69,11 @@ chiếu hiển thị tại nguồn.
 - [Nguồn Corsair CV650](https://memoryzone.com.vn/nguon-may-tinh-corsair-cv650-650w-80-plus-bronze-cp-9020236-na)
 - [Case Deepcool MATREXX 40 3FS](https://memoryzone.com.vn/case-may-tinh-deepcool-matrexx-40-3fs-dp-matx-matrexx40-3fs)
 
-### Nguồn và giấy phép ảnh minh họa
+### Nguồn ảnh sản phẩm
 
-Ảnh được liên kết trực tiếp từ Wikimedia Commons; không dùng ảnh sản phẩm
-MemoryZone. Ảnh chỉ minh họa loại linh kiện, không phải ảnh đúng model. Các
-record chứa `imageUrl`, `imageIsIllustrative` và `imageAttribution`:
-
-- SSD SATA: [Silicon Power 60GB](https://commons.wikimedia.org/wiki/File:2015_Dysk_SSD_Silicon_Power_60GB_(02).jpg),
-  Jacek Halicki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- SSD M.2: [Plextor M8Pe(Y) 256GB](https://commons.wikimedia.org/wiki/File:2017_Dysk_SSD_Plextor_M8Pe(Y)_256GB.jpg),
-  Jacek Halicki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- RAM: [DDR4 RAM](https://commons.wikimedia.org/wiki/File:16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png),
-  PantheraLeo1359531, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-- USB: [Verbatim Store 'n' Click 16GB](https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg),
-  Jacek Halicki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- Ổ cứng di động: [Silicon Power Stream S03](https://commons.wikimedia.org/wiki/File:HK_unboxing_Made_in_Taiwan_USB_3.1_Gen_1_Portable_Hard_Drive_Stream_S03_%E5%BB%A3%E7%A9%8E%E9%9B%BB%E9%80%9A_Silicon_Power_Computer_%26_Communications_April_2019_SSG_01.jpg),
-  PS Ommyerb, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- CPU: [Ảnh mặt dưới AMD Ryzen Threadripper 7970X](https://commons.wikimedia.org/wiki/File:Unterseite_des_AMD_Ryzen_Threadripper_7970X_20240407_074.jpg),
-  PantheraLeo1359531, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-- VGA: [BFG NVIDIA GeForce 9500 GT](https://commons.wikimedia.org/wiki/File:BFG_NVIDIA_GeForce_9500_GT.jpg),
-  Thomas Galvin, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- PSU: [ATX Computer power supply unit](https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg),
-  Dmitry Makeev, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- Case: [Kolink Observatory RGB Midi-Tower](https://commons.wikimedia.org/wiki/File:PC-Geh%C3%A4use_Kolink_Observatory_RGB_Midi-Tower_20201120_DSC6134.jpg),
-  PantheraLeo1359531, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Ảnh trong `public/images/<id>/<n>.webp` là toàn bộ gallery của trang sản phẩm
+MemoryZone liệt kê ở trên (lấy từ `<link sản phẩm>.json`, trường `images`), tải
+ngày 24/11/2026 và chuyển sang WebP rộng tối đa 600px. Mỗi sản phẩm có trường
+`images` (ảnh đầu tiên là ảnh chính). Bản quyền ảnh
+thuộc MemoryZone hoặc nhà sản xuất; dự án chỉ dùng cho mục đích học tập, phi
+thương mại. Trang chi tiết sản phẩm có link về trang gốc.

@@ -42,6 +42,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@koniwa/core@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@koniwa/core@npm:0.3.0"
+  checksum: 10c0/3793d8592e4988e84908a0ebe04901a72e8f731efe19d0f83792e292836cff429c612be89600fcbd7f23b165e476f07918d48056f7008896b039cdba8377ddb2
+  languageName: node
+  linkType: hard
+
+"@koniwa/router@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@koniwa/router@npm:0.1.0"
+  peerDependencies:
+    "@koniwa/core": ^0.3.0
+  checksum: 10c0/557ed5b4f477a207b6ce85e14353e6e28b9e13083ff5d03d8f93b4bd85221c1426547f7fc69166cba0fba0fc43745d8c742677fe6039a4578d450914e7310800
+  languageName: node
+  linkType: hard
+
 "@napi-rs/wasm-runtime@npm:1.2.6":
   version: 1.2.6
   resolution: "@napi-rs/wasm-runtime@npm:1.2.6"
@@ -429,13 +445,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsx-lite-renderer@github:dangttp97/jsx-lite-renderer":
-  version: 0.1.0
-  resolution: "jsx-lite-renderer@https://github.com/dangttp97/jsx-lite-renderer.git#commit=c3b32de83fd695c667f6d27f144c60ff216c5e9c"
-  checksum: 10c0/ac34bf3be33e9f5e0dc9b8f26ab0d4e7fa764f877cef8b4075c4e6623bfffcdfc173235f70e891b7aa2fed80e3357d2a88ffe831a9ef0e70010737bc7d99739b
-  languageName: node
-  linkType: hard
-
 "lightningcss-android-arm64@npm:1.33.0":
   version: 1.33.0
   resolution: "lightningcss-android-arm64@npm:1.33.0"
@@ -648,9 +657,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "public-miniature-eshopping-page@workspace:."
   dependencies:
+    "@koniwa/core": "npm:^0.3.0"
+    "@koniwa/router": "npm:^0.1.0"
     "@types/node": "npm:^26.6.6"
     "@watari/core": "github:dangttp97/watari#workspace=@watari/core"
-    jsx-lite-renderer: "github:dangttp97/jsx-lite-renderer"
     typescript: "npm:^7.0.2"
     vite: "npm:^8.3.8"
     zod: "npm:^4.6.7"

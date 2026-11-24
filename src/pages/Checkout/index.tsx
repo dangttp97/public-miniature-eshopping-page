@@ -1,33 +1,50 @@
-import { Field } from "@/components/Field";
-import { Layout } from "@/components/Layout";
-import { Cart, loadCart, OrderSummary } from "@/pages/Cart";
-import { createOrder, type OrderRequest } from "@/utils/api";
-import { validateForm } from "@/utils/form";
-import { formatVnd } from "@/utils/format";
-import { navigate } from "@/utils/router";
-import { checkoutSchema } from "@/utils/schemas";
-import { clearCart, getUser } from "@/utils/store";
+import { createOrder } from "@/api/orders";
+import { Button } from "@/components/Button/Button";
+import { Field } from "@/components/Field/Field";
+import { PageStatus } from "@/components/PageStatus/PageStatus";
+import { Radio } from "@/components/Radio/Radio";
+import { PAYMENT_OPTIONS } from "@/constants/paymentMethods";
+import type { OrderRequest, PaymentMethod } from "@/entities/Order";
+import { useUser } from "@/features/auth/user";
+import { OrderSummary } from "@/features/cart/OrderSummary";
+import { clearCart } from "@/features/cart/cartStore";
+import { useCartItems } from "@/features/cart/useCartItems";
+import { cx } from "@/lib/cx";
+import { validateForm } from "@/lib/form";
+import { formatVnd } from "@/lib/format";
+import { Redirect } from "@/lib/navigation";
+import { useState } from "@koniwa/core";
+import { Link, useLocation, useNavigate } from "@koniwa/router";
 
 import css from "./Checkout.module.css";
+import { CheckoutAccountSelection } from "./CheckoutAccountSelection";
+import { checkoutSchema } from "./checkoutSchema";
 
-export const Checkout = async () => {
-  const { items, totalVnd } = await loadCart();
-  if (!items.length) {
-    history.replaceState(history.state, "", "/cart");
-    return Cart();
-  }
-  const user = getUser();
+export const Checkout = () => {
+  const user = useUser();
+  const cart = useCartItems();
+  const navigate = useNavigate();
+  const isGuest = new URLSearchParams(useLocation().search).has("guest");
+  const [name, setName] = useState(user?.name ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cod");
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const inputValue = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 
-  const onSubmit = async (e: SubmitEvent) => {
+  if (cart.status !== "done") return <PageStatus state={cart} />;
+  const { items, totalVnd } = cart.data;
+  if (!items.length && !isSubmitting) return <Redirect to="/cart" replace />;
+  if (!user && !isGuest)
+    return <CheckoutAccountSelection items={items} totalVnd={totalVnd} />;
+
+  const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
-    const button = form.querySelector<HTMLButtonElement>(
-      "button[type=submit]",
-    )!;
-    const alert = form.querySelector<HTMLElement>("[role=alert]")!;
-    alert.textContent = "";
-
-    const data = validateForm(form, checkoutSchema);
+    setError("");
+    const data = validateForm(
+      e.currentTarget as HTMLFormElement,
+      checkoutSchema,
+    );
     if (!data) return;
 
     const request: OrderRequest = {
@@ -46,112 +63,111 @@ export const Checkout = async () => {
       paymentMethod: data.paymentMethod,
     };
 
-    button.disabled = true;
-    button.textContent = "Đang đặt hàng…";
+    setSubmitting(true);
     try {
       const order = await createOrder(request);
       clearCart();
       navigate(`/orders/${order.id}`);
     } catch (err) {
-      alert.textContent = `Chưa đặt được hàng: ${(err as Error).message}. Vui lòng thử lại.`;
-      button.disabled = false;
-      button.textContent = `Đặt hàng · ${formatVnd(totalVnd)}`;
+      setError(
+        `Chưa đặt được hàng: ${(err as Error).message}. Vui lòng thử lại.`,
+      );
+      setSubmitting(false);
     }
   };
 
   return (
-    <Layout>
-      <div className="page">
-        <h1>Thanh toán</h1>
-        <form className="split" onSubmit={onSubmit} novalidate>
-          <div className={css.form}>
-            <fieldset className={`card ${css.section}`}>
-              <legend>Thông tin nhận hàng</legend>
-              <div className={css.cols}>
-                <Field
-                  label="Họ và tên"
-                  name="name"
-                  autocomplete="name"
-                  required
-                  value={user?.name ?? ""}
-                />
-                <Field
-                  label="Số điện thoại"
-                  name="phone"
-                  type="tel"
-                  inputmode="numeric"
-                  autocomplete="tel"
-                  required
-                  hint="10 số, bắt đầu bằng 0"
-                />
-              </div>
+    <div className="page">
+      <h1>Thanh toán</h1>
+      {user ? (
+        <p className="muted">Đặt hàng với tài khoản {user.email}.</p>
+      ) : (
+        <p className="muted">
+          Bạn đang mua không cần tài khoản. <Link to="/login">Đăng nhập</Link>
+        </p>
+      )}
+      <form className="split" onSubmit={handleSubmit} novalidate>
+        <div className={css.form}>
+          <fieldset className={cx("card", css.section)}>
+            <legend>Thông tin nhận hàng</legend>
+            <div className={css.cols}>
               <Field
-                label="Email (không bắt buộc)"
-                name="email"
-                type="email"
-                autocomplete="email"
-                value={user?.email ?? ""}
-              />
-              <Field
-                label="Địa chỉ giao hàng"
-                name="address"
-                autocomplete="street-address"
+                label="Họ và tên"
+                name="name"
+                autocomplete="name"
                 required
-                placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"
+                value={name}
+                onInput={(e: Event) => setName(inputValue(e))}
               />
               <Field
-                label="Ghi chú (không bắt buộc)"
-                name="note"
-                multiline
-                placeholder="Ví dụ: giao giờ hành chính"
+                label="Số điện thoại"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+                placeholder="Ví dụ: 0912345678"
               />
-            </fieldset>
-
-            <fieldset className={`card ${css.section}`}>
-              <legend>Phương thức thanh toán</legend>
-              <label className={css.option}>
-                <input type="radio" name="paymentMethod" value="cod" checked />
-                <span>
-                  <strong>Thanh toán khi nhận hàng (COD)</strong>
-                  <span className="hint">
-                    Trả tiền mặt cho nhân viên giao hàng.
-                  </span>
-                </span>
-              </label>
-              <label className={css.option}>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="bank_transfer"
-                />
-                <span>
-                  <strong>Chuyển khoản ngân hàng</strong>
-                  <span className="hint">
-                    Thông tin tài khoản hiển thị sau khi đặt hàng.
-                  </span>
-                </span>
-              </label>
-            </fieldset>
-          </div>
-
-          <OrderSummary items={items} totalVnd={totalVnd}>
-            <div className={css.items}>
-              {items.map(({ product, qty }) => (
-                <div className={css.item}>
-                  <span>
-                    {product.name} × {qty}
-                  </span>
-                  <span>{formatVnd(product.priceVnd * qty)}</span>
-                </div>
-              ))}
             </div>
-            <p className="alert" role="alert"></p>
-            <button type="submit" className="btn btn-primary btn-block">
-              Đặt hàng · {formatVnd(totalVnd)}
-            </button>
-          </OrderSummary>
-        </form>
-      </div>
-    </Layout>
+            <Field
+              label="Email (không bắt buộc)"
+              name="email"
+              type="email"
+              autocomplete="email"
+              value={email}
+              onInput={(e: Event) => setEmail(inputValue(e))}
+            />
+            <Field
+              label="Địa chỉ giao hàng"
+              name="address"
+              autocomplete="street-address"
+              required
+              placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"
+            />
+            <Field
+              label="Ghi chú (không bắt buộc)"
+              name="note"
+              multiline
+              placeholder="Ví dụ: giao giờ hành chính"
+            />
+          </fieldset>
+
+          <fieldset className={cx("card", css.section)}>
+            <legend>Phương thức thanh toán</legend>
+            {PAYMENT_OPTIONS.map((option) => (
+              <Radio
+                name="paymentMethod"
+                value={option.value}
+                label={option.label}
+                hint={option.hint}
+                checked={paymentMethod === option.value}
+                onChange={() => setPaymentMethod(option.value)}
+              />
+            ))}
+          </fieldset>
+        </div>
+
+        <OrderSummary items={items} totalVnd={totalVnd}>
+          <div className={css.items}>
+            {items.map(({ product, qty }) => (
+              <div key={product.id} className={css.item}>
+                <span>
+                  {product.name} × {qty}
+                </span>
+                <span>{formatVnd(product.priceVnd * qty)}</span>
+              </div>
+            ))}
+          </div>
+          <p className="alert" role="alert">
+            {error}
+          </p>
+          <Button type="submit" block disabled={isSubmitting}>
+            {isSubmitting
+              ? "Đang đặt hàng…"
+              : `Đặt hàng · ${formatVnd(totalVnd)}`}
+          </Button>
+        </OrderSummary>
+      </form>
+    </div>
   );
 };

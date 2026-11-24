@@ -13,6 +13,7 @@
   --color-bg: #f4f7f5;
   --color-surface: #ffffff;
   --color-surface-sunken: #eaf0ed;
+  --color-product-photo: #ffffff;
   --color-text: #10241d;
   --color-text-muted: #4b5b55;
   --color-border: #d5e2dc;
@@ -22,7 +23,7 @@
   --color-danger-soft: #fee2e2;
   --color-warning-soft: #fef3c7;
   --color-on-warning-soft: #92400e;
-  --color-focus: #2563eb;
+  --color-focus: color-mix(in srgb, var(--color-primary) 35%, transparent);
 
   --font-heading: "Be Vietnam Pro", system-ui, sans-serif;
   --font-body: "Nunito Sans", system-ui, sans-serif;
@@ -58,10 +59,10 @@
   --header-height: 64px;
   --tap-min: 44px;
 
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #34d399;
     --color-primary-hover: #6ee7b7;
@@ -86,9 +87,9 @@
     --color-danger-soft: #3a1414;
     --color-warning-soft: #3a2a0c;
     --color-on-warning-soft: #fcd34d;
-    --color-focus: #60a5fa;
+    --color-focus: color-mix(in srgb, var(--color-primary) 45%, transparent);
 
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-md: 0 4px 12px rgb(0 0 0 / 0.5);
   }
-}
+} */
